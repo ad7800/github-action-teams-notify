@@ -1,0 +1,45 @@
+name: check-user-teams
+on: 
+  #push:
+  # branches:
+   #- Actions_test
+  #pull_request:
+  # branches:
+  # - Actions_test
+  workflow_dispatch:
+permissions:
+  contents: read
+
+jobs:
+   get-employee-github-user:
+    name: Test Get Employee Action (JavaScript)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: lookup-teams-user/.nvmrc
+          cache-dependency-path: lookup-teams-user
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+        working-directory: lookup-teams-user
+      - name: Test Get Employee (JavaScript) Action
+        id: lookup-teams-user
+        uses: ./lookup-teams-user
+        with:
+  #        github_username: ${{ github.actor }}
+  #        github_token: ${{ secrets.GITHUB_TOKEN }}
+          tenant_id: ${{ secrets.TENANT_ID }}
+          client_id: ${{ secrets.CLIENT_ID }}
+          client_secret: ${{ secrets.MS_CLIENT_SECRET }}
+          user_domain: ukg.com
+      - name: Show Found User
+        run: |
+          echo "Team ID: ${{ steps.lookup-teams-user.outputs.userID }}"
+          echo "NAME: ${{ steps.lookup-teams-user.outputs.displayName }}"
+          echo "UPN ID: ${{ steps.lookup-teams-user.outputs.userPrincipalName }}"
+         

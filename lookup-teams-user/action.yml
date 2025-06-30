@@ -1,0 +1,28 @@
+name: 'Lookup Microsoft Teams User'
+description: 'Find Microsoft Teams user ID from GitHub username via Microsoft Graph API'
+
+inputs:
+  tenant_id:
+    required: true
+  client_id:
+    required: true
+  client_secret:
+    required: true
+  github_username:
+    description: 'GitHub username to look up (default: github.actor)'
+    required: false
+  user_domain:
+    description: 'User email domain to try as UPN (e.g., company.com)'
+    required: false
+
+outputs:
+  userId:
+    description: 'Microsoft Teams user ID (GUID)'
+  displayName:
+    description: 'User display name'
+  userPrincipalName:
+    description: 'Email / UPN of user'
+
+runs:
+  using: 'node16'
+  main: 'index.js'
