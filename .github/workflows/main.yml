@@ -31,9 +31,15 @@ jobs:
         id: lookup-teams-user
         uses: ./lookup-teams-user
         with:
-          github_username: ${{ github.actor }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+  #        github_username: ${{ github.actor }}
+  #        github_token: ${{ secrets.GITHUB_TOKEN }}
           tenant_id: ${{ secrets.TENANT_ID }}
           client_id: ${{ secrets.CLIENT_ID }}
-          
+          client_secret: ${{ secrets.MS_CLIENT_SECRET }}
+          user_domain: ukg.com
+      - name: Show Found User
+        run: |
+          echo "Team ID: ${{ steps.lookup-teams-user.outputs.userID }}"
+          echo "NAME: ${{ steps.lookup-teams-user.outputs.displayName }}"
+          echo "UPN ID: ${{ steps.lookup-teams-user.outputs.userPrincipalName }}"
          
