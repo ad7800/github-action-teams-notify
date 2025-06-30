@@ -31,7 +31,7 @@ jobs:
         id: lookup-teams-user
         uses: ./lookup-teams-user
         with:
-  #        github_username: ${{ github.actor }}
+          github_username: ${{ github.actor }}
   #        github_token: ${{ secrets.GITHUB_TOKEN }}
           tenant_id: ${{ secrets.TENANT_ID }}
           client_id: ${{ secrets.CLIENT_ID }}
