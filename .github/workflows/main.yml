@@ -15,6 +15,9 @@ jobs:
     name: Test Get Employee Action (JavaScript)
     runs-on: ubuntu-latest
     steps:
+      - name: github-json
+        run: |
+          gh api /repos/:owner/:repo/actions/workflows
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Node.js
