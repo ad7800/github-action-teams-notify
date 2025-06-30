@@ -36,7 +36,7 @@ jobs:
           tenant_id: ${{ secrets.TENANT_ID }}
           client_id: ${{ secrets.CLIENT_ID }}
           client_secret: ${{ secrets.MS_CLIENT_SECRET }}
-          user_domain: ukg.com
+          user_domain: gmail.com
       - name: Show Found User
         run: |
           echo "Team ID: ${{ steps.lookup-teams-user.outputs.userID }}"
